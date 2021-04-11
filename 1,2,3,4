@@ -1,0 +1,111 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author Vale
+ */
+public class Enlazadas {
+
+    private Nodo first;
+    private Nodo last;
+    private int size;
+    public Enlazadas() {
+        this.first = null;
+        this.last = null;
+        this.size = 0;
+    }
+    public void addLast(int dato) {
+        if(this.first==null) {
+            Nodo nuevo = new Nodo(dato);
+            first = nuevo;
+            last = nuevo;
+            nuevo.next = nuevo;
+        }
+        else {
+            Nodo nuevo = new Nodo(dato);
+            nuevo.next = null;
+            last.next = nuevo;
+            last = nuevo;
+        }
+        this.size++;       
+    }
+    public void deleteLast() {
+        Nodo delete = null;
+        if(this.first==null) {           
+        }
+        if(first == last) {
+            first = null;
+            last = null;
+        }
+        else {
+            Nodo actual = first;
+            while(actual.next != last) {
+                actual = actual.next;
+            }
+            delete = actual.next;
+            actual.next = null;
+            last = actual;
+        }
+        this.size--;    
+    }
+    public void imprimir() {
+        if(size != 0) {
+            Nodo temp = first;
+            String str = "";
+            for(int i = 0; i < this.size; i++) {
+                str = str + temp.dato + "\n";                
+                temp = temp.next;
+            }
+            System.out.println(str);           
+        }
+    }
+    public void addAfter(int num, int dato) {
+        Nodo nuevo = new Nodo(dato);
+        Nodo actual;
+        actual=first;
+        int cont=0;
+        int n=-1;
+        while(actual!=null){
+                if(actual.dato==num){
+                    n=cont;
+                }
+                cont+=1;
+                actual=actual.next;
+            }
+        if(n>0){
+           if (first == null) {
+            first = nuevo;
+        } else {
+            Nodo puntero = first;
+            int contador = 0;
+            while (contador < n && puntero.next != null) {
+                puntero = puntero.next;
+                contador++;
+            }            
+            nuevo.siguiente = puntero.siguiente;
+            puntero.siguiente = nuevo;
+        }
+        size++; 
+        }else{
+            System.out.println("NO EXISTE EL DATO");
+        }       
+    }
+    public void cantidadDatos(){
+        System.out.println("EL TAMAÑO DE LA LISTA ES: "+size);
+    }
+    public static void main(String[] args) {
+        Enlazadas lista=new Enlazadas();
+        lista.addLast(100);
+        lista.addLast(200);
+        lista.addLast(300);
+        lista.addLast(400);
+        lista.deleteLast();
+        lista.addAfter(200, 500);
+        lista.imprimir();
+        lista.cantidadDatos();
+    }    
+}  
