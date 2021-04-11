@@ -1,0 +1,84 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author Vale
+ */
+
+public class ListaCircular {
+
+    NodoCircular last;
+    int size;
+    public ListaCircular(){
+        last=null;
+    }
+    public boolean estaVacia1(){
+        return last==null;
+    }
+    public ListaCircular insertar(int element){
+        NodoCircular nuevo =new NodoCircular(element);
+        if(last!=null){
+            nuevo.next=last.next;
+            last.next=nuevo;
+        }
+        last=nuevo;
+        size+=1;
+        return this;
+    }
+    public int SizeList(){
+        return size;
+    }
+    public void mostrarList(){
+        NodoCircular auxiliar=last.next;
+        String cadena="";
+        do{
+            cadena+="["+auxiliar.dato+"]";
+            auxiliar=auxiliar.next;
+        }while(auxiliar!=last.next);
+        System.out.println(cadena);
+    }
+    public void deleteFirst(){
+       NodoCircular actual;
+       actual=last;
+       NodoLC auxiliar=actual.next;
+       if (last==last.next){
+           last=null;
+       }else{
+           if (auxiliar==last){
+               last=actual;
+           }
+           actual.next=auxiliar.next;
+       }       
+    }
+    public int datosLista(int indice){
+        NodoCircular auxiliar=last.next;
+        int i=0;
+        while(i<indice){
+            auxiliar=auxiliar.next;
+            i+=1;
+        }
+        return auxiliar.dato;
+    }
+    public static void main(String[] args) {
+        ListaCircular lista2=new ListaCircular();
+        lista2.insertar(12);
+        lista2.insertar(61);
+        lista2.insertar(71);
+        lista2.insertar(50);
+        lista2.insertar(6);
+        lista2.deleteFirst();
+        lista2.mostrarList();
+        ListaCircular lista3=new ListaCircular();
+        lista3.insertar(30);
+        lista3.insertar(50);
+        lista3.insertar(8);
+        for (int i=0; i<lista3.SizeList(); i++){
+            lista2.insertar(lista3.datosLista(i));
+        }
+        lista2.mostrarList();
+    }   
+}
