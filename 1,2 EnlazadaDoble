@@ -1,0 +1,75 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author Vale
+ */
+public class EnlazadaDoble {
+
+    private NodoDoble start, end;
+    public EnlazadaDoble(){
+        start=end=null;       
+    }
+    public boolean estaVacia(){
+        return start==null;
+    }
+    public void addOrdered(int dato){
+        if(!estaVacia()){
+            end=new NodoDoble(dato, null, end);
+            end.previous.next=end;                   
+        }else{
+            start=end=new NodoDoble(dato);
+        }
+    }
+    public void mostrarLista(){
+        if(!estaVacia()){
+            String data="<=>";
+            NodoDoble auxiliar=start;
+            while(auxiliar!=null){
+                data+="["+auxiliar.dato+"]<=>";
+                auxiliar=auxiliar.next;
+            }
+            System.out.println(data);
+        }
+    }
+    public void delete(int elemento) {
+        NodoDoble temp = start;
+        if (start == end && temp.dato == elemento) {
+            start = end = null;
+        }else{
+        if (!estaVacia()) {
+            while (temp != null && temp.dato != elemento) {
+                temp = temp.next;
+            }
+        }
+        if (temp != null) {
+            if (temp != start) {
+                if (temp != end) {
+                    temp.next.previous = temp.previous;
+                    temp.previous.next = temp.next;
+                } else {
+                    end = end.previous;
+                    end.next = null;
+                }
+            } else {
+                start = start.next;
+                start.previous = null;
+            }
+        }
+        }       
+    }
+    public static void main(String[] args) {
+        EnlazadaDoble lista1=new EnlazadaDoble();
+        lista1.addOrdered(100);
+        lista1.addOrdered(10);
+        lista1.addOrdered(1);
+        lista1.addOrdered(110);
+        lista1.addOrdered(2);
+        lista1.delete(20);
+        lista1.mostrarLista();
+    }  
+}  
