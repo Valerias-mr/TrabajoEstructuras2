@@ -1,0 +1,55 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author Vale
+ */
+
+/* NODO CIRCULAR DOBLE
+public class NodoDoble {                
+    int dato;
+    NodoDoble next, previous;
+}
+*/
+
+/* NODO CIRCULAR
+public class NodoCircular {                 
+    int dato;
+    NodoCircular next;
+    public NodoCircular(int a){
+        dato=a;
+        next=this;
+    }
+}
+*/
+
+/* NODO
+public class Nodo {             
+    int dato;
+    Nodo next;
+    public Nodo(int dato){
+        this.dato=dato;
+        this.next=null;
+    }
+}
+*/
+
+/* NODO DOBLE
+public class NodoDoble {       
+    public int dato;
+    NodoDoble next, previous;
+    public NodoDoble(int el){
+        this(el, null, null);
+    }
+    public NodoDoble(int a, NodoDoble n, NodoDoble p){
+        dato=a;
+        next=n;
+        previous=p;
+    }
+    
+}
+*/
