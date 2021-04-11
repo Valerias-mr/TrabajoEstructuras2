@@ -1,0 +1,80 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author Vale
+ */
+
+public class ListaCircularDoble {
+    NodoCircularDoble first, last;
+    
+    public ListaCircularDoble(){
+        first=null;
+        last=null;
+    }
+    public void insertar(int dato){
+        NodoCircularDoble nuevo=new NodoCircularDoble();
+        nuevo.dato=dato;
+        if (first==null){
+            first=nuevo;
+            first.next=first;
+            nuevo.previous=last;
+            last=nuevo;
+        }else{
+            last.next=nuevo;
+            nuevo.next=first;
+            nuevo.previous=last;
+            last=nuevo;
+            first.previous=last;
+        }
+    }
+    public void mostrarLista(){
+        NodoCircularDoble actual;
+        actual=first;
+        String cadena="";
+        do{
+            cadena+="["+actual.dato+"]";
+            actual=actual.next;
+        }while(actual!=first);
+        System.out.println(cadena);
+    }
+    public int search(int num){
+        NodoCircularDoble actual;
+        actual=first;
+        int indice=0;
+        int pos=-1;
+        do{
+            if(actual.dato==num){
+                pos=indice;
+            }
+            actual=actual.next;
+            indice+=1;
+        }while(actual!=first);
+        return pos;
+    }
+    public void orderedDesc(){
+        int numMin=Integer.MIN_VALUE;
+        NodoCircularDoble actual;
+        actual=first;
+        NodoCircularDoble actualAux;
+        actualAux=first;        
+    }
+    public static void main(String[] args) {
+        ListaCircularDoble lista4=new ListaCircularDoble();
+        lista4.insertar(110);
+        lista4.insertar(2);
+        lista4.insertar(19);
+        lista4.insertar(6);
+        lista4.mostrarLista();
+        int indice=lista4.search(111);
+        if(indice<0){
+            System.out.println("EL NUMERO NO SE ENCUENTRA EN LA LISTA");
+        }else{
+            System.out.println("EL NÚMERO ESTÁ EN LA POSICIÓN"+indice+" DE LA LISTA");
+        }       
+    }   
+}
